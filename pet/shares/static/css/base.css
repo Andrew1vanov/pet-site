@@ -5,7 +5,7 @@ body {
     font-family: sans-serif;
 }
 
-#content {
+#main {
     float: left;
     width: 60%;
     padding: 0 0 0 30px;
@@ -15,14 +15,14 @@ body {
     float: right;
     width: 30%;
     padding: 10px;
-    background-color: blue;
-    height: 50%;
+    background-color: rgb(143, 143, 211);
+    height: 100%;
 }
 
 a.logo {
     text-decoration: none;
     color: red;}
-    
+
 a.logo:hover {color: rgb(152, 4, 4);}
 
 #header {
@@ -30,3 +30,7 @@ a.logo:hover {color: rgb(152, 4, 4);}
     overflow: auto;
     padding-left: 30px;
 }
+
+#subheader {background-color: rgb(220, 220, 212);
+    overflow: auto;
+    padding-left: 60px;}
