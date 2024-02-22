@@ -18,4 +18,3 @@ def load_shares_list():
         shares_short_names = np.append(shares_short_names, s_short_names)
 
     return shares_names, shares_short_names
-

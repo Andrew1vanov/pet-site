@@ -21,16 +21,16 @@ body {
 
 a.logo {
     text-decoration: none;
-    color: red;}
+    color: rgb(22, 2, 134);}
 
 a.logo:hover {color: rgb(152, 4, 4);}
 
 #header {
-    background-color: rgb(186, 153, 153);
+    background-color: rgb(216, 240, 255);
     overflow: auto;
     padding-left: 30px;
 }
 
-#subheader {background-color: rgb(220, 220, 212);
+#subheader {background-color: rgb(235, 201, 253);
     overflow: auto;
     padding-left: 60px;}
