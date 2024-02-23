@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(244, 244, 226);
+    background-color: rgb(143, 255, 255);
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -7,23 +7,22 @@ body {
 
 #main {
     float: left;
-    width: 60%;
+    width: 70%;
     padding: 0 0 0 30px;
 }
 
 #sidebar {
     float: right;
-    width: 30%;
+    width: 20%;
     padding: 10px;
-    background-color: rgb(143, 143, 211);
+    background-color: rgb(139, 250, 117);
     height: 100%;
 }
 
 a.logo {
     text-decoration: none;
-    color: rgb(22, 2, 134);}
-
-a.logo:hover {color: rgb(152, 4, 4);}
+    color: rgb(23, 9, 99);
+    font-style: italic;}
 
 #header {
     background-color: rgb(216, 240, 255);
@@ -31,6 +30,6 @@ a.logo:hover {color: rgb(152, 4, 4);}
     padding-left: 30px;
 }
 
-#subheader {background-color: rgb(235, 201, 253);
+#subheader {background-color: rgb(183, 169, 255);
     overflow: auto;
     padding-left: 60px;}
