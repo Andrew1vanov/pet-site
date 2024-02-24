@@ -9,8 +9,8 @@
         <h3>Избранное</h3>
         <h3>Все</h3>
         <ul>
-            {% for share in short_names %}
-                <li><a href="/">{{ share }}</a></li>
+            {% for secid in moex_list %}
+                <li><a href="/">{{ secid.short_name }}</a></li>
             {% endfor %}
         </ul>
         
