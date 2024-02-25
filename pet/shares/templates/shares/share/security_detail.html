@@ -4,11 +4,19 @@
 {% block title %}Security{% endblock %}
 
 {% block content %}
+<div class="detail">
     <h2>{{ security.name }} ({{ security.sec_id }})</h2>
-    <p>Short name: {{ security.short_name }} <br>
-        Board: {{ security.board }}
-    </p>
-    <p>
-        {{ security.description }}
-    </p>
+    <p>Short name: {{ security.short_name }}<br>Board: {{ security.board }}</p>
+    <p>{{ security.description }}</p>
+
+    <div class="line">
+        <h3>График {{ security.name }}</h3>
+        {% autoescape off %}
+    
+        {{ line_price }}
+    
+        {% endautoescape %}
+    </div>
+</div>
+
 {% endblock %}

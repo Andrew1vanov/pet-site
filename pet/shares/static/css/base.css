@@ -45,3 +45,18 @@ caption {
     font-size: 20px;
     border-bottom: 2px ridge black;
     }
+
+.moex_list table {
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 1px solid pink;
+}
+
+.moex_list th, td, tr {
+    border: 1px dotted pink;
+}
+
+.detail {
+    margin: 2%;
+}
