@@ -1,0 +1,15 @@
+{% extends "shares/base.html" %}
+
+{% load static %}
+
+{% block title %}All securities{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for secid in moex_list %}
+            <li><a href="{{ moex_list.get_absolute_url }}">
+                {{ secid.short_name }}</a></li>
+        {% endfor %}
+    </ul>>
+
+{% endblock %}

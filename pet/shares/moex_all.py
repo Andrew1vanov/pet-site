@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.urls import reverse
 import requests
 import pandas as pd
 import numpy as np
@@ -35,5 +36,3 @@ class MOEX_all:
 
         for item in moex_all.values():
             yield item
-
-

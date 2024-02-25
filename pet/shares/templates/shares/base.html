@@ -11,7 +11,11 @@
         <h1><a href="/" class="logo">My shares</a></h1>
     </div>
     <div id="subheader">
-        <h2>Title page</h2>
+        <ul>
+            <li><a href="{% url "shares:title_page" %}">Главная</a></li>
+            <li><a href="{% url "shares:all_security_list" %}" title="Список всех компаний торгующихся на MOEX">Список компаний</a></li>
+        </ul>
+        
     </div>
     <div id="content">
         {% block content %}
