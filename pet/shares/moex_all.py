@@ -34,5 +34,6 @@ class MOEX_all:
     def __iter__(self):
         moex_all = self.moex_all.copy()
 
-        for item in moex_all.values():
+        for key, item in moex_all.items():
+            item['secid'] = str(key)
             yield item

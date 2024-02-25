@@ -4,5 +4,11 @@
 {% block title %}Security{% endblock %}
 
 {% block content %}
-    <p>There is will be information for security</p>
+    <h2>{{ security.name }} ({{ security.sec_id }})</h2>
+    <p>Short name: {{ security.short_name }} <br>
+        Board: {{ security.board }}
+    </p>
+    <p>
+        {{ security.description }}
+    </p>
 {% endblock %}

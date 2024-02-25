@@ -8,7 +8,11 @@
         <h2>Листинг компаний</h2>
         <h3>Избранное</h3>
         <h3>Все</h3>
-               
+        <ul>
+            {% for sec in securities %}
+            <li><a href="{{ sec.get_absolute_url }}">{{ sec.name }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
     <div id="main">
         <h2>This is first try to create web-site</h2>

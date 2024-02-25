@@ -5,11 +5,22 @@
 {% block title %}All securities{% endblock %}
 
 {% block content %}
-    <ul>
+    <table>
+        <caption>Список компаний торгуемых на Московоской бирже</caption>
+        <tr>
+            <th>Name</th>
+            <th>Short name</th>
+            <th>Secid</th>
+            <th>Board</th>
+        </tr>
         {% for secid in moex_list %}
-            <li><a href="{{ moex_list.get_absolute_url }}">
-                {{ secid.short_name }}</a></li>
+            <tr>
+                <td>{{ secid.name }}</td>
+                <td>{{ secid.short_name }}</td>
+                <td>{{ secid.secid }}</td>
+                <td>{{ secid.board }}</td>
+            </tr>
         {% endfor %}
-    </ul>>
+    </table>>
 
 {% endblock %}
