@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.urls import reverse
 import apimoex, requests
 import pandas as pd
@@ -12,6 +13,8 @@ class Security(models.Model):
     board = models.CharField(max_length = 4)
     slug = models.SlugField(max_length = 120)
     description = models.TextField(blank = True)
+    price = ArrayField(models.FloatField())
+    volume = ArrayField(models.IntegerField())
 
     class Meta:
         indexes = [models.Index(fields = ['name']), 
@@ -24,7 +27,7 @@ class Security(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('shares:security_detail', args = [self.id, self.slug])
+        return reverse('shares:security_detail', args = [self.slug])
     
     def get_history(self):
         sec = apimoex.get_board_history(

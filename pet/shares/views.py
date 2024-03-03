@@ -9,8 +9,8 @@ def title_page(request):
     return render(request, 'shares/share/title_page.html', 
                   {'securities': securities})
 
-def security_detail(request, id, slug):
-    security = get_object_or_404(Security, id = id, slug = slug)
+def security_detail(request, slug):
+    security = get_object_or_404(Security, slug = slug)
     price, volume = security.get_history()
 
     fig_price = px.line(y=price)

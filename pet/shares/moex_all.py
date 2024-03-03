@@ -47,7 +47,7 @@ class MOEX_session:
                     short_name = val['short_name'],
                     sec_id = key,
                     board = val['board'],
-                    slug = str(val['board'])
+                    slug = str(key)
                 )
             
     def clear(self):
