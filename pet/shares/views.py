@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .moex_all import MOEX_all
+from .moex_all import MOEX_session
 from .models import Security
 import plotly.express as px
 # Create your views here.
@@ -21,6 +21,7 @@ def security_detail(request, id, slug):
                    'line_price': line_price})
 
 def all_securitites(request):
-    moex_list = MOEX_all(request)
+    moex_list = MOEX_session(request)
+    #moex_list.securirties_update()
     return render(request, 'shares/share/all_securities.html', 
                   {'moex_list': moex_list})

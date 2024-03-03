@@ -10,7 +10,7 @@
         <h3>Все</h3>
         <ul>
             {% for sec in securities %}
-            <li><a href="{{ sec.get_absolute_url }}">{{ sec.name }}</a></li>
+            <li><a href="{{ sec.get_absolute_url }}">{{ sec.short_name }}</a></li>
             {% endfor %}
         </ul>
     </div>

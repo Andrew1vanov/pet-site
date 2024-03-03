@@ -3,8 +3,9 @@ from django.urls import reverse
 import requests
 import pandas as pd
 import numpy as np
+from .models import Security
 
-class MOEX_all:
+class MOEX_session:
     def __init__(self, request):
         self.session = request.session
         moex_all = self.session.get(settings.MOEX_ALL_SESSION_ID)
@@ -16,7 +17,7 @@ class MOEX_all:
     
     def load_moex_shares_list(self):
         moex_all = {}
-        for i in range(12):        
+        for i in range(25):        
             i = str(i*100)
             url = 'https://iss.moex.com//iss/securities.json?group_by=group&group_by_filter=stock_shares&start=%s' %i
 
@@ -28,12 +29,26 @@ class MOEX_all:
         
             for id, s_name, name, board in zip(s_secid, s_short_names, s_name, s_board):
                 moex_all[id] = {'short_name': s_name, 'name': name, 'board': board}
-        
+                    
         return moex_all
-
+    
     def __iter__(self):
         moex_all = self.moex_all.copy()
 
         for key, item in moex_all.items():
             item['secid'] = str(key)
             yield item
+
+    def securirties_update(self):
+        for key, val in self.moex_all.items():
+            if val['board'] == 'TQBR':
+                Security.objects.create(
+                    name = val['name'],
+                    short_name = val['short_name'],
+                    sec_id = key,
+                    board = val['board'],
+                    slug = str(val['board'])
+                )
+            
+    def clear(self):
+        del self.session[settings.MOEX_ALL_SESSION_ID]
