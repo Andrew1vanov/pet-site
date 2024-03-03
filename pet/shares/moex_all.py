@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.urls import reverse
-import requests
+import requests, apimoex
 import pandas as pd
 import numpy as np
 from .models import Security
@@ -40,14 +40,33 @@ class MOEX_session:
             yield item
 
     def securirties_update(self):
+        def get_history(sec_id, board):
+            sec = apimoex.get_board_history(
+                requests.Session(), 
+                security=sec_id, 
+                columns= ['CLOSE', 'VOLUME'],
+                board= board
+                )
+            sec = pd.DataFrame(sec)
+            price = sec.fillna(sec.mean()).iloc[:, 0].values.ravel()
+            volume = sec.fillna(sec.mean()).iloc[:, 1].values.ravel()
+            #start = len(price) - 1000 if len(price) > 1000 else 0
+            #end = len(price)
+            price = [p for p in price]
+            volume = [v for v in volume]
+            return price, volume
+        
         for key, val in self.moex_all.items():
             if val['board'] == 'TQBR':
+                price_s, volume_s = get_history(key, val['board'])
                 Security.objects.create(
                     name = val['name'],
                     short_name = val['short_name'],
                     sec_id = key,
                     board = val['board'],
-                    slug = str(key)
+                    slug = str(key), 
+                    price = price_s,
+                    volume = volume_s
                 )
             
     def clear(self):

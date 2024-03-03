@@ -11,7 +11,7 @@ def title_page(request):
 
 def security_detail(request, slug):
     security = get_object_or_404(Security, slug = slug)
-    price, volume = security.get_history()
+    price, volume = security.price, security.volume
 
     fig_price = px.line(y=price)
     line_price = fig_price.to_html(full_html = False, include_plotlyjs = False)
@@ -20,8 +20,8 @@ def security_detail(request, slug):
                   {'security': security,
                    'line_price': line_price})
 
-def all_securitites(request):
+def all_securities(request):
     moex_list = MOEX_session(request)
-    #moex_list.securirties_update()
+    moex_list.securirties_update()
     return render(request, 'shares/share/all_securities.html', 
                   {'moex_list': moex_list})

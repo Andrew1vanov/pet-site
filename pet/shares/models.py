@@ -14,12 +14,12 @@ class Security(models.Model):
     slug = models.SlugField(max_length = 120)
     description = models.TextField(blank = True)
     price = ArrayField(models.FloatField())
-    volume = ArrayField(models.IntegerField())
+    volume = ArrayField(models.BigIntegerField())
 
     class Meta:
         indexes = [models.Index(fields = ['name']), 
                    models.Index(fields = ['id', 'slug'])]
-        ordering = ['name']
+        ordering = ['short_name']
         verbose_name = 'security'
         verbose_name_plural = 'securities'
 
@@ -39,4 +39,7 @@ class Security(models.Model):
         sec = pd.DataFrame(sec)
         price = sec.fillna(sec.mean()).iloc[:, 0].values.ravel()
         volume = sec.fillna(sec.mean()).iloc[:, 1].values.ravel()
+        price = [p for p in price]
+        volume = [v for v in volume]
         return price, volume
+    
