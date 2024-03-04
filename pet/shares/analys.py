@@ -1,11 +1,11 @@
 import numpy as np
 
 def d_sma(sct, n = 21):
-    SMA = np.array([sum(sct[i-n:i]) / n if i>n else sct[i] for i in range(len(sct))])
+    SMA = np.array([sum(sct[i-n:i]) / n if i>=n else sct[i] for i in range(len(sct))])
     return SMA
 
 def d_wma(sct, vol, n = 21):
-    WMA = np.array([(sum(sct[i-n:i] * vol[i-n:i]) / sum(vol[i-n:i])) if i>n else sct[i]
+    WMA = np.array([(sum(sct[i-n:i] * vol[i-n:i]) / sum(vol[i-n:i])) if i>=n else sct[i]
                     for i in range(len(sct))])
     return WMA
 
