@@ -50,8 +50,6 @@ class MOEX_session:
             sec = pd.DataFrame(sec)
             price = sec.fillna(sec.mean()).iloc[:, 0].values.ravel()
             volume = sec.fillna(sec.mean()).iloc[:, 1].values.ravel()
-            #start = len(price) - 1000 if len(price) > 1000 else 0
-            #end = len(price)
             price = [p for p in price]
             volume = [v for v in volume]
             return price, volume
