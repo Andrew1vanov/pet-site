@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.urls import reverse
+from django.conf import settings
 import apimoex, requests
 import pandas as pd
 
@@ -15,6 +16,10 @@ class Security(models.Model):
     description = models.TextField(blank = True)
     price = ArrayField(models.FloatField())
     volume = ArrayField(models.BigIntegerField())
+
+    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, 
+            related_name= 'securities_liked',
+            blank = True)
 
     class Meta:
         indexes = [models.Index(fields = ['name']), 
