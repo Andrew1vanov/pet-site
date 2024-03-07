@@ -20,5 +20,6 @@ import time
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('shares.urls', namespace= 'shares'))
+    path('', include('shares.urls', namespace= 'shares')),
+    path('profile/', include('account.urls', namespace= 'account')),
 ]

@@ -1,6 +1,5 @@
 from django.db import models
 from django.conf import settings
-from shares.models import Security
 # Create your models here.
 
 class Profile(models.Model):

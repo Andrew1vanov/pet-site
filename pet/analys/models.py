@@ -5,7 +5,7 @@ import numpy as np
 
 class MovingAverages(models.Model):
     name = models.CharField(max_length = 10)
-    period = models.IntegerField()
+    period = models.PositiveIntegerField()
     linestyle = models.CharField(max_length = 20)
     color = models.CharField(max_length = 7)
     lineType = models.CharField(max_length = 3)
