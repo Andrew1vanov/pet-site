@@ -22,6 +22,6 @@ def security_detail(request, slug):
 
 def all_securities(request):
     moex_list = MOEX_session(request)
-    moex_list.securirties_update()
+    #moex_list.securirties_update()
     return render(request, 'shares/share/all_securities.html', 
                   {'moex_list': moex_list})

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shares.apps.SharesConfig',
     'analys.apps.AnalysConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
