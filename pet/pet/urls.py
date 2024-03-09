@@ -21,5 +21,6 @@ import time
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls', namespace= 'account')),
+    path('analys/', include('analys.urls', namespace= 'analys')),
     path('', include('shares.urls', namespace= 'shares')),    
 ]

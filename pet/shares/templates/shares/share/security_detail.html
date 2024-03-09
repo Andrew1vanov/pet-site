@@ -24,8 +24,14 @@
             <p>SMA <input type="number" name="SMA"></p>
             <p>WMA <input type="number" name="WMA"></p>
             <p>EMA <input type="number" name="EMA"></p>
-        <h4>Полосы Боллинджера <input type="checkbox" name="Bollinger"></h4>
+        </form>
+        <form action="{% url "analys:add_bollinger" security.id %}" method="post">
+            <h4>Полосы Боллинджера</h4> {{ bollinger_form }}
+            {% csrf_token %}
+        </form>
+         <input type="checkbox" name="Bollinger">
         <h4>Осциляторы</h4>
+        <form>
             <p>RSI <input type="number" name="RSI"></p>
         </form>
     </div>

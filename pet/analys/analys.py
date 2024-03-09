@@ -19,8 +19,8 @@ def d_ema(sct, n = 21):
     return EMA
 
 def d_Bollinger_Bands(sma):
-    U_L = np.array([[(1 + 10/100) * sma[i] for i in range(len(sma))],
-                    [(1 - 10/100) * sma[i] for i in range(len(sma))]])
+    U_L = np.array([[(1 + 0.1) * sma[i] for i in range(len(sma))],
+                    [(1 - 0.1) * sma[i] for i in range(len(sma))]])
     return U_L
 
 def d_macd(sct):
