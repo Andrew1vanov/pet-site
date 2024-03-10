@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .moex_all import MOEX_session
 from .models import Security
 import plotly.express as px
-from analys.forms import Bollinger_form
+from analys.forms import Bollinger_form, MovingAvr
 # Create your views here.
 
 def title_page(request):
@@ -18,11 +18,13 @@ def security_detail(request, slug):
     line_price = fig_price.to_html(full_html = False, include_plotlyjs = False)
 
     bollinger_form = Bollinger_form()
+    moving_form = MovingAvr()
 
     return render(request, 'shares/share/security_detail.html',
                   {'security': security,
                    'line_price': line_price,
-                   'form': bollinger_form})
+                   'form': bollinger_form,
+                   'moving_form': moving_form})
 
 def all_securities(request):
     moex_list = MOEX_session(request)

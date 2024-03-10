@@ -20,21 +20,18 @@
     <div class="analys_forms">
         <h3>Инструменты технического анализа</h3>
         <h4>Скользящие средние</h4>
-        <form>            
-            <p>SMA <input type="number" name="SMA"></p>
-            <p>WMA <input type="number" name="WMA"></p>
-            <p>EMA <input type="number" name="EMA"></p>
-        </form>
-        <form action="{% url "analys:add_bollinger" security.id %}" method="post">
-            <h4>Полосы Боллинджера</h4> {{ bollinger_form }}
+        <form action="" method="post">            
+            {{ moving_form }}
             {% csrf_token %}
         </form>
-         <input type="checkbox" name="Bollinger">
+        <form action="{% url "analys:add_bollinger" security.id %}" method="post">
+            {% csrf_token %}
+            <h4>Полосы Боллинджера</h4> {{ form }}     
+        </form>
         <h4>Осциляторы</h4>
         <form>
             <p>RSI <input type="number" name="RSI"></p>
         </form>
     </div>
 </div>
-
 {% endblock %}

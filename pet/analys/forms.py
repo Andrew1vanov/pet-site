@@ -1,9 +1,10 @@
 from django import forms
 
 class Bollinger_form(forms.Form):
-    period = forms.BooleanField(required= True, 
+    period = forms.BooleanField(required= False, 
                                 initial= False,)
-    abee = forms.IntegerField(min_value= 0, max_value= 500)
 
 class MovingAvr(forms.Form):
-    sma = forms.IntegerField()
+    SMA = forms.IntegerField()
+    WMA = forms.IntegerField()
+    EMA = forms.IntegerField()
