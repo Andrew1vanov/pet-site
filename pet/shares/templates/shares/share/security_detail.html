@@ -20,7 +20,17 @@
     <div class="analys_forms">
         <h3>Инструменты технического анализа</h3>
         <h4>Скользящие средние</h4>
-        <form action="{% url "analys:add_moving_average" security.id %}" method="post">            
+        <form action="{% url "analys:add_SMA" security.id %}" method="post">            
+            <input type="submit" name="button" value="SMA">
+            {{ sma_form.SMA }}
+            {% csrf_token %}            
+        </form>
+        <form action="{% url "analys:add_WMA" security.id %}" method="post">            
+            <input type="submit" name="button" value="WMA">
+            {{ wma_form.WMA }}
+            {% csrf_token %}            
+        </form>
+        <form action="{% url "analys:add_EMA" security.id %}" method="post">            
             <input type="submit" name="button" value="EMA">
             {{ moving_form.EMA }}
             {% csrf_token %}            
