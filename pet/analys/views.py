@@ -24,5 +24,4 @@ def add_moving_average(request, sec_id):
             color = 'red',
             lineType = 'EMA'
         )
-    else: print('No valid')
     return redirect('shares:security_detail', slug = security.slug)
