@@ -20,13 +20,14 @@
     <div class="analys_forms">
         <h3>Инструменты технического анализа</h3>
         <h4>Скользящие средние</h4>
-        <form action="" method="post">            
-            {{ moving_form }}
-            {% csrf_token %}
+        <form action="{% url "analys:add_moving_average" security.id %}" method="post">            
+            <input type="submit" name="button" value="EMA">
+            {{ moving_form.EMA }}
+            {% csrf_token %}            
         </form>
         <form action="{% url "analys:add_bollinger" security.id %}" method="post">
+            <h4>Полосы Боллинджера</h4> {{ form }}
             {% csrf_token %}
-            <h4>Полосы Боллинджера</h4> {{ form }}     
         </form>
         <h4>Осциляторы</h4>
         <form>

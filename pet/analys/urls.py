@@ -5,5 +5,5 @@ app_name = 'analys'
 
 urlpatterns = [
     path('add/<int:sec_id>/', views.add_bollinger, name='add_bollinger'),
-    
+    path('moving/<int:sec_id>/', views.add_moving_average, name = 'add_moving_average'),
 ]

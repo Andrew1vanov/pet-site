@@ -13,7 +13,7 @@ class MovingAverages(models.Model):
     def plot(self, sct, vol):
         n = self.period
         if self.lineType == 'EMA':
-            K = 2/(self.n + 1)
+            K = 2/(n + 1)
             EMA = [sct[0]]
             for i in range(len(sct)):
                 EMA.append(EMA[-1] + (K * (sct[i] - EMA[-1])))

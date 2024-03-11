@@ -5,6 +5,4 @@ class Bollinger_form(forms.Form):
                                 initial= False,)
 
 class MovingAvr(forms.Form):
-    SMA = forms.IntegerField()
-    WMA = forms.IntegerField()
     EMA = forms.IntegerField()
