@@ -3,7 +3,7 @@ from .moex_all import MOEX_session
 from .models import Security
 import plotly.graph_objects as go
 import numpy as np
-from analys.forms import Bollinger_form, MovingAveragesForm
+from analys.forms import MovingAveragesForm
 from analys.models import MovingAverages
 # Create your views here.
 
