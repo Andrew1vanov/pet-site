@@ -29,3 +29,14 @@ class MovingAverages(models.Model):
             WMA = np.array([(sum(sct[i-n:i] * vol[i-n:i]) / sum(vol[i-n:i])) if i>=n else sct[i]
                     for i in range(len(sct))])
             return WMA
+    
+    def bollinger_bands(self, sct, sma):
+
+        n = self.period
+        p = len(sma)
+        s = np.array([(1/n * sum((sct[i-n:i] - sma[i])**2))**(1/2) if i>=n else 0\
+                        for i in range(p)])
+        s = s * 2
+        bb_upper = [sma[i] + s[i] for i in range(p)]
+        bb_lower = [sma[i] - s[i] for i in range(p)]
+        return bb_upper, bb_lower
