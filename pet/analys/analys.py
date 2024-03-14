@@ -1,27 +1,5 @@
 import numpy as np
-
-def d_sma(sct, n = 21):
-    SMA = np.array([sum(sct[i-n:i]) / n if i>=n else sct[i] for i in range(len(sct))])
-    return SMA
-
-def d_wma(sct, vol, n = 21):
-    WMA = np.array([(sum(sct[i-n:i] * vol[i-n:i]) / sum(vol[i-n:i])) if i>=n else sct[i]
-                    for i in range(len(sct))])
-    return WMA
-
-def d_ema(sct, n = 21):
-    K = 2/(n+1)
-    EMA = [sct[0]]
-    for i in range(len(sct)):
-        EMA.append(EMA[-1] + (K * (sct[i] - EMA[-1])))
-    EMA.pop(0)
-    EMA = np.asarray(EMA)
-    return EMA
-
-def d_Bollinger_Bands(sma):
-    U_L = np.array([[(1 + 0.1) * sma[i] for i in range(len(sma))],
-                    [(1 - 0.1) * sma[i] for i in range(len(sma))]])
-    return U_L
+from plotly import graph_objects as go
 
 def d_macd(sct):
     MACD = d_ema(sct, n = 12) - d_ema(sct, n = 26)
@@ -57,3 +35,26 @@ def d_obv(sct, vol):
             OBV.append(OBV[i-1] - vol[i])
     OBV.pop(0)
     return OBV
+
+def analys_plot(price, volume, items):
+    x = [i for i in range(len(price))]
+    x_rev = x[::-1]
+    fig_price = go.Figure()
+    fig_price.add_trace(go.Scatter(y = price, mode = 'lines', name='price', showlegend=False))
+    for item in items:
+        line = item.plot(sct = price, vol = volume)
+        fig_price.add_trace(go.Scatter(y = line, name = item.name, line=dict(
+            color = item.color, dash = item.linestyle), showlegend= False 
+        ))
+        if item.lineType == 'SMA' and item.period == 20:
+            bb_up, bb_low = item.bollinger_bands(price, line)
+            bb_low = bb_low[::-1]
+            fig_price.add_trace(go.Scatter(x = x+x_rev, 
+                y = bb_up + bb_low,
+                fill='toself',
+                fillcolor='rgba(74, 255, 189, 0.3)',
+                line_color = 'rgba(74, 255, 189, 0.5)',
+                showlegend=False
+                ))
+    
+    return fig_price
