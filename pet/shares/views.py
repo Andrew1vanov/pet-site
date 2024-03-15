@@ -15,7 +15,6 @@ def security_detail(request, slug):
     security = get_object_or_404(Security, slug = slug)
     price, volume = security.price, security.volume
     fig_price = analys_plot(price, volume, items = MovingAverages.objects.all())
-
     line_price = fig_price.to_html(full_html = False, include_plotlyjs = False)
 
     moving_form = MovingAveragesForm()
