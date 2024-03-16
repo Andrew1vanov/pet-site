@@ -30,15 +30,52 @@ a.logo {
     padding-left: 30px;
 }
 
-#subheader {background-color: rgb(183, 169, 255);
+#subheader {
+    background-color: rgb(183, 169, 255);
     overflow: auto;
     padding-left: 30px;
     color:rgb(10, 4, 45);
     font-size: 20px;
+    margin: 0%;
     }
 
+#subheader a {
+    text-decoration: None;
+}
+
 #subheader td {
-    border: 2px ridge black;
+    background: rgb(189, 189, 239);
+    animation: 1s remove_hover;
+    padding: 0px;
+}
+
+#subheader td:hover {
+    background: linear-gradient(to top right, rgb(189, 189, 239), rgb(216, 240, 255));
+    animation-duration: 1s;
+    animation-name: subhead_animation;   
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@keyframes subhead_animation {
+    from {
+        padding: 0px;
+    }
+
+    to {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@keyframes remove_hover {
+    from {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    to {
+        padding: 0px;
+    }
 }
 
 caption {
