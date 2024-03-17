@@ -41,42 +41,35 @@ a.logo {
 
 #subheader a {
     text-decoration: None;
+    color: blue;    
+    -webkit-transition: 
+        color 1s;
+    transition: color 1s;
+}
+
+#subheader a:hover {
+    color: lime;
 }
 
 #subheader td {
     background: rgb(189, 189, 239);
     animation: 1s remove_hover;
     padding: 0px;
+    -webkit-transition: 
+        padding 1s,
+        background-color 1s,
+        -webkit-transform 1s;
+    transition:
+    background-color 1s,
 }
 
 #subheader td:hover {
     background: linear-gradient(to top right, rgb(189, 189, 239), rgb(216, 240, 255));
     animation-duration: 1s;
-    animation-name: subhead_animation;   
     padding-left: 10px;
     padding-right: 10px;
 }
 
-@keyframes subhead_animation {
-    from {
-        padding: 0px;
-    }
-
-    to {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-}
-
-@keyframes remove_hover {
-    from {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    to {
-        padding: 0px;
-    }
-}
 
 caption {
     font-size: 20px;
