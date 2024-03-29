@@ -15,8 +15,28 @@ body {
     float: right;
     width: 20%;
     padding: 10px;
-    background-color: rgb(139, 250, 117);
+    background-color: rgb(106, 241, 199);
     height: 100%;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#sidebar a {
+    border: none;
+    text-decoration: none;
+}
+
+#sidebar li {
+    margin: 1%;
+}
+
+#sidebar li:hover {
+    padding-left: 5px;
+
 }
 
 a.logo {
@@ -47,9 +67,6 @@ a.logo {
     transition: color 1s;
 }
 
-#subheader a:hover {
-    color: lime;
-}
 
 #subheader td {
     background: rgb(189, 189, 239);
