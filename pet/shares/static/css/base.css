@@ -1,5 +1,6 @@
 body {
-    background-color: #2EFAF1;
+    background-color: #12001F;
+    color: #C1C986;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
@@ -15,7 +16,7 @@ body {
     float: right;
     width: 20%;
     padding: 10px;
-    background-color: #FAD837;
+    background-color: #41185E;
     height: 100%;
 }
 
@@ -28,31 +29,35 @@ body {
 #sidebar a {
     border: none;
     text-decoration: none;
-    color: #A65B99;
+    color: #C1C986;
 }
 
 #sidebar li {
     margin: 1%;
+    -webkit-transition:
+        padding 0.5s,
+        -webkit-transform 0.5s;
+    transition: padding 0.5s,
 }
 
 #sidebar li:hover {
     padding-left: 5px;
-
+    
 }
 
 a.logo {
     text-decoration: none;
-    color: #FA37D9;
+    color: #7D4F9E;
     font-style: italic;}
 
 #header {
-    background-color: #2EFAF1;
+    background-color: #12001F;
     overflow: auto;
     padding-left: 30px;
 }
 
 #subheader {
-    background-color: #7A7458;
+    background-color: #6A7427;
     overflow: auto;
     padding: 0px;
     padding-left: 30px;
@@ -62,7 +67,7 @@ a.logo {
 
 #subheader a {
     text-decoration: None;
-    color: blue;    
+    color: #1B1F00;    
     -webkit-transition: 
         color 1s;
     transition: color 1s;
@@ -70,7 +75,7 @@ a.logo {
 
 
 #subheader td {
-    background: #5A7D7B;
+    background: #6A7427;
     animation: 1s remove_hover;
     padding: 0px;
     -webkit-transition: 
@@ -82,7 +87,7 @@ a.logo {
 }
 
 #subheader td:hover {
-    background: linear-gradient(to top, #5A7D7B, #2EFAF1);
+    background: linear-gradient(to top, #6A7427, #BCF0EB);
     animation-duration: 1s;
     padding-left: 10px;
     padding-right: 10px;
@@ -91,18 +96,18 @@ a.logo {
 
 caption {
     font-size: 20px;
-    border-bottom: 2px ridge black;
+    border-bottom: 2px ridge #7D4F9E;
     }
 
 .moex_list table {
     text-align: center;
     margin-left: 2%;
     margin-right: 2%;
-    border: 1px solid pink;
+    border: 1px solid #7D4F9E;
 }
 
 .moex_list th, td, tr {
-    border: 1px dotted pink;
+    border: 1px dotted #7D4F9E;
 }
 
 .detail {
