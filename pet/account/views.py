@@ -9,10 +9,10 @@ from django.contrib.auth import authenticate, login
 def accuont_view(request):
     return render(request, 'account/acc.html')
 
-class InvestorRegistration(CreateView):
+class AccountRegistration(CreateView):
     template_name = 'account/registration.html'
     form_class = UserCreationForm
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('account_view')
     
     def form_valid(self, form):
         result = super().form_valid(form)
