@@ -113,3 +113,8 @@ caption {
 .detail {
     margin: 2%;
 }
+
+.buttons {
+    background-color: #7D4F9E;
+    border: 1px ridge #C1C986;
+}

@@ -1,0 +1,14 @@
+{% extends "shares/base.html" %}
+
+{% block title %}Create your account{% endblock %}
+
+{% block content %}
+<div class="detail">
+    <h2>Create your account</h2>
+    <form>
+        {{ form }}
+        {% csrf_token %}<br>
+        <input type="submit" value="Accept" class="buttons">
+    </form>
+</div>
+{% endblock %}
