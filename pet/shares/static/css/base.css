@@ -118,3 +118,8 @@ caption {
     background-color: #7D4F9E;
     border: 1px ridge #C1C986;
 }
+
+.profile a {
+    text-decoration: none;
+    color: white;
+}

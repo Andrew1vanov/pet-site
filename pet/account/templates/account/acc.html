@@ -3,10 +3,15 @@
 {% block title %}Your account {% endblock %}
 
 {% block content %}
-{% if user %}
-    <h2>This is your profile page</h2>
-    <p>Hello {{ user.name }}</p>
-{% else %}
-    <p><a href="{% url "registration" %}">Create account</a></p>
-{% endif %}
+<div class="profile">
+    {% if user.is_authenticated %}
+        <h2>This is your profile page</h2>
+        <p>Hello {{ user.name }}</p>
+    {% else %}
+        <h2>You are not authenticated.</h2>
+        <p>Please, <a href="#">login</a> or
+            <a href="{% url "investor_registration" %}"> create account.</a>
+        </p>
+    {% endif %}
+</div>
 {% endblock %}
