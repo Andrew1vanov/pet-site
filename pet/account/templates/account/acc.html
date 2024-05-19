@@ -6,10 +6,15 @@
 <div class="profile">
     {% if user.is_authenticated %}
         <h2>This is your profile page</h2>
-        <p>Hello {{ user.name }}</p>
+        <p>Hello {{ user.username }}</p>
+        <br>
+        <form action="{% url "logout" %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
     {% else %}
         <h2>You are not authenticated.</h2>
-        <p>Please, <a href="#">login</a> or
+        <p>Please, <a href="{% url "login" %}">login</a> or
             <a href="{% url "investor_registration" %}"> create account.</a>
         </p>
     {% endif %}

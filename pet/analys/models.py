@@ -1,5 +1,6 @@
 from django.db import models
 import numpy as np
+import numba
 # Create your models here.
 
 class MovingAverages(models.Model):
@@ -29,8 +30,8 @@ class MovingAverages(models.Model):
                     for i in range(len(sct))])
             return WMA
     
-    def bollinger_bands(self, sct, sma):
-
+    
+    def bollinger_bands(self, sct, sma):    
         n = self.period
         p = len(sma)
         s = np.array([(1/n * sum((sct[i-n:i] - sma[i])**2))**(1/2) if i>=n else 0\
@@ -39,3 +40,4 @@ class MovingAverages(models.Model):
         bb_upper = [sma[i] + s[i] for i in range(p)]
         bb_lower = [sma[i] - s[i] for i in range(p)]
         return bb_upper, bb_lower
+    

@@ -1,0 +1,14 @@
+{% extends "shares/base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+    <div class="detail">
+        <h2>Log-in</h2>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}<br>
+            <p><input type="submit" value="Log-in" class="buttons"></p>
+        </form>
+    </div>
+{% endblock %}
