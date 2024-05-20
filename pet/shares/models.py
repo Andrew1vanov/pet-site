@@ -14,7 +14,10 @@ class Security(models.Model):
     board = models.CharField(max_length = 4)
     slug = models.SlugField(max_length = 120)
     description = models.TextField(blank = True)
-    price = ArrayField(models.FloatField())
+
+    trade_dates = ArrayField(models.DateField())
+    price_all = ArrayField(models.FloatField())
+    price_year = ArrayField(models.FloatField())
     volume = ArrayField(models.BigIntegerField())
 
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, 

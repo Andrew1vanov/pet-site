@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, FormView
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 from .forms import MyUserCreationForm
@@ -35,14 +35,8 @@ class AccountLogin(LoginView):
     next_page = reverse_lazy('account_view')
 
 
-def login_account(request):
-    form = AuthenticationForm
+class AccountChangeView(CreateView):
+    template_name = 'account/account_update.html'
+    form_class = UserChangeForm
+    success_url = reverse_lazy('account_view')
 
-    if form.is_valid():
-        cd = form.cleaned_data
-        name = cd['username']
-        password = cd['password1']
-
-        user = authenticate(username = name, passwords = password)
-        login(request, user)
-        return redirect('account_view')

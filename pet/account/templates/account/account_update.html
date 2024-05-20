@@ -1,0 +1,15 @@
+{% extends "shares/base.html" %}
+
+{% block title %}Create your account{% endblock %}
+
+{% block content %}
+<div class="detail">
+    <h2>Change your profile</h2>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <br>
+        <button type="submit">Accept</button>
+    </form>
+</div>
+{% endblock %}

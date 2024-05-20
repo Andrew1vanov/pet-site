@@ -8,6 +8,9 @@
         <h2>This is your profile page</h2>
         <p>Hello {{ user.username }}</p>
         <br>
+        <!-- <p><a href="{% url "account_update" %}">Change data</a></p> -->
+        <p><a href="#">Change data</a></p>
+        <br>
         <form action="{% url "logout" %}" method="post">
             {% csrf_token %}
             <button type="submit">Log Out</button>
