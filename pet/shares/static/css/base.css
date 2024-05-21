@@ -123,3 +123,8 @@ caption {
     text-decoration: none;
     color: white;
 }
+
+.user-btn {
+    background-color: red;
+    border-radius: 10px;
+}
