@@ -1,6 +1,6 @@
-import datetime
+from datetime import datetime
 from django.conf import settings
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 from django.utils import timezone
 import requests, apimoex
 from ...models import Security
@@ -9,28 +9,30 @@ import pandas as pd
 class Command(BaseCommand):
     help = 'Update shares data every day'
 
+    def add_arguments(self, parser: CommandParser) -> None:
+         return super().add_arguments(parser)
     
-    
-    def securirties_update(self) -> None:
+    def handle(self, *args, **options) -> None:
          
         moex_all = self.loadAllSecurities()
 
         for key, val in moex_all.items():
             if val['board'] == 'TQBR':
-                price_s, volume_s = self.get_history(key, val['board'])
+                price_s, volume_s, date_s = self.get_history(key, val['board'])
                 Security.objects.create(
                     name = val['name'],
                     short_name = val['short_name'],
                     sec_id = key,
                     board = val['board'],
                     slug = str(key), 
-                    price = price_s,
+                    trade_dates = date_s,
+                    price_all = price_s,
                     volume = volume_s
                 )
     
     def loadAllSecurities(self) -> dict:
         moex_all = {}
-        for i in range(25):        
+        for i in range(2):        
             i = str(i*100)
             url = 'https://iss.moex.com//iss/securities.json?group_by=group&group_by_filter=stock_shares&start=%s' %i
 
@@ -53,8 +55,13 @@ class Command(BaseCommand):
                 board= board
                 )
             sec = pd.DataFrame(sec)
-            price = sec.fillna(sec.mean()).iloc[:, 0].values.ravel()
-            volume = sec.fillna(sec.mean()).iloc[:, 1].values.ravel()
-            price = [p for p in price]
-            volume = [v for v in volume]
-            return price, volume
+            
+            tDate = sec.iloc[:, 0].values.ravel()
+            price = sec.iloc[:, 1].values.ravel()
+            volume = sec.iloc[:, 2].values.ravel()
+           
+            tDate = [datetime.strptime(t, '%Y-%m-%d') for t in tDate]    
+            price = list(price.flatten())   
+            volume = list(volume.flatten())
+
+            return price, volume, tDate

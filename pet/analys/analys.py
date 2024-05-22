@@ -36,20 +36,23 @@ def d_obv(sct, vol):
     OBV.pop(0)
     return OBV
 
-def analys_plot(price, volume, items):
-    x = [i for i in range(len(price))]
-    x_rev = x[::-1]
+def analys_plot(price: list, volume: list, dates: list = None, items = None) -> go.Figure:
+    
+    if not dates:
+        dates = [i for i in range(len(price))]
+
+    x_rev = dates[::-1]
     fig_price = go.Figure()
-    fig_price.add_trace(go.Scatter(y = price, mode = 'lines', name='price', showlegend=False))
+    fig_price.add_trace(go.Scatter(x = dates,y = price, mode = 'lines', name='price', showlegend=False))
     for item in items:
         line = item.plot(sct = price, vol = volume)
-        fig_price.add_trace(go.Scatter(y = line, name = item.name, line=dict(
+        fig_price.add_trace(go.Scatter(x = dates, y = line, name = item.name, line=dict(
             color = item.color, dash = item.linestyle), showlegend= False 
         ))
         if item.lineType == 'SMA' and item.period == 20:
             bb_up, bb_low = item.bollinger_bands(price, line)
             bb_low = bb_low[::-1]
-            fig_price.add_trace(go.Scatter(x = x+x_rev, 
+            fig_price.add_trace(go.Scatter(x = dates+x_rev, 
                 y = bb_up + bb_low,
                 fill='toself',
                 fillcolor='rgba(74, 255, 189, 0.3)',

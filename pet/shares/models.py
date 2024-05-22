@@ -17,7 +17,6 @@ class Security(models.Model):
 
     trade_dates = ArrayField(models.DateField())
     price_all = ArrayField(models.FloatField())
-    price_year = ArrayField(models.FloatField())
     volume = ArrayField(models.BigIntegerField())
 
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL, 
@@ -36,18 +35,5 @@ class Security(models.Model):
 
     def get_absolute_url(self):
         return reverse('shares:security_detail', args = [self.slug])
-    
-    def get_history(self):
-        sec = apimoex.get_board_history(
-            requests.Session(), 
-            security=self.sec_id, 
-            columns= ['CLOSE', 'VOLUME'],
-            board= self.board
-            )
-        sec = pd.DataFrame(sec)
-        price = sec.fillna(sec.mean()).iloc[:, 0].values.ravel()
-        volume = sec.fillna(sec.mean()).iloc[:, 1].values.ravel()
-        price = [p for p in price]
-        volume = [v for v in volume]
-        return price, volume
+
     

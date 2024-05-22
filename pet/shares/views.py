@@ -12,15 +12,16 @@ def title_page(request):
     return render(request, 'shares/share/title_page.html', 
                   {'securities': securities})
 
-def security_detail(request, slug):
+def security_detail(request, slug) -> render:
     key = f'{slug}'
     security = cache.get(key)
     if not security:
         security = get_object_or_404(Security, slug = slug)
         cache.set(key, security)
    
-    price, volume = security.price, security.volume
-    fig_price = analys_plot(price, volume, items = MovingAverages.objects.all())
+    price, volume = security.price_all, security.volume
+    dates = security.trade_dates
+    fig_price = analys_plot(price, volume, dates = dates,items = MovingAverages.objects.all())
     line_price = fig_price.to_html(full_html = False, include_plotlyjs = False)
 
     moving_form = MovingAveragesForm()
