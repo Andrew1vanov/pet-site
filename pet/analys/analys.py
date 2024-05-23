@@ -1,5 +1,6 @@
 import numpy as np
 from plotly import graph_objects as go
+from plotly.subplots import make_subplots
 
 def d_macd(sct):
     MACD = d_ema(sct, n = 12) - d_ema(sct, n = 26)
@@ -42,7 +43,11 @@ def analys_plot(price: list, volume: list, dates: list = None, items = None) -> 
         dates = [i for i in range(len(price))]
 
     x_rev = dates[::-1]
+    # fig = make_subplots(rows = 2, cols = 1, specs=[[{}], [{}]],
+    #                     shared_yaxes=True, shared_xaxes=False,
+    #                     vertical_spacing=0.01)
     fig_price = go.Figure()
+    fig_price.set_subplots(2, 1, horizontal_spacing = 0.1)
     fig_price.add_trace(go.Scatter(x = dates,y = price, mode = 'lines', name='price', showlegend=False))
     for item in items:
         line = item.plot(sct = price, vol = volume)
@@ -59,5 +64,6 @@ def analys_plot(price: list, volume: list, dates: list = None, items = None) -> 
                 line_color = 'rgba(74, 255, 189, 0.5)',
                 showlegend=False
                 ))
-    
+    #fig_price.
+       
     return fig_price

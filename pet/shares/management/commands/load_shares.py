@@ -57,8 +57,8 @@ class Command(BaseCommand):
             sec = pd.DataFrame(sec)
             
             tDate = sec.iloc[:, 0].values.ravel()
-            price = sec.iloc[:, 1].values.ravel()
-            volume = sec.iloc[:, 2].values.ravel()
+            price = sec.iloc[:, 1].ffill().values.ravel()
+            volume = sec.iloc[:, 2].ffill().values.ravel()
            
             tDate = [datetime.strptime(t, '%Y-%m-%d') for t in tDate]    
             price = list(price.flatten())   
