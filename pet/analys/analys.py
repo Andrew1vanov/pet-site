@@ -15,13 +15,14 @@ def d_momentum(sct, n = 5):
 
 def d_rsi(sct, n = 14):
     '''Relative Strength Index'''
+    sct = np.asarray(sct)
     RSI = []
     for i in range(n+1, len(sct)):
         g = sct[i-n:i] - sct[i-n-1:i-1]
         U = np.mean(g[np.where(g > 0)[0]])
         D = abs(np.mean(g[np.where(g < 0)[0]]))
         RSI.append(100 - (100/(1 + U/D)))
-    RSI = np.asarray(RSI)
+    #RSI = np.asarray(RSI)
     return RSI
 
 def d_obv(sct, vol):
@@ -46,8 +47,11 @@ def analys_plot(price: list, volume: list, dates: list = None, items = None) -> 
     # fig = make_subplots(rows = 2, cols = 1, specs=[[{}], [{}]],
     #                     shared_yaxes=True, shared_xaxes=False,
     #                     vertical_spacing=0.01)
-    fig_price = go.Figure()
-    fig_price.set_subplots(2, 1, horizontal_spacing = 0.1)
+    fig_price = go.Figure().set_subplots(2, 1, vertical_spacing = 0.1,
+        row_heights= [0.7, 0.3],
+        #specs = [[{"colspan": 1}], [None]]
+        )
+    
     fig_price.add_trace(go.Scatter(x = dates,y = price, mode = 'lines', name='price', showlegend=False))
     for item in items:
         line = item.plot(sct = price, vol = volume)
@@ -64,6 +68,10 @@ def analys_plot(price: list, volume: list, dates: list = None, items = None) -> 
                 line_color = 'rgba(74, 255, 189, 0.5)',
                 showlegend=False
                 ))
-    #fig_price.
+    
+    fig_price.append_trace(go.Scatter(y = d_rsi(price), x = dates, showlegend= False, name = 'RSI'),
+                           row = 2, col = 1)
+
+    # fig_price.select_yaxes()
        
     return fig_price
