@@ -13,16 +13,15 @@ def d_momentum(sct, n = 5):
     MOMENTUM = [sct[i]/sct[i - n] * 100 if i > n else 0 for i in range(len(sct))]
     return MOMENTUM
 
-def d_rsi(sct, n = 14):
+def d_rsi(sct, n = 14) -> list:
     '''Relative Strength Index'''
     sct = np.asarray(sct)
     RSI = []
-    for i in range(n+1, len(sct)):
-        g = sct[i-n:i] - sct[i-n-1:i-1]
+    for i in range(len(sct)):
+        g = sct[i-n:i] - sct[i-n-1:i-1] if i > n+1 else sct[i:i+n]
         U = np.mean(g[np.where(g > 0)[0]])
         D = abs(np.mean(g[np.where(g < 0)[0]]))
         RSI.append(100 - (100/(1 + U/D)))
-    #RSI = np.asarray(RSI)
     return RSI
 
 def d_obv(sct, vol):
@@ -47,9 +46,11 @@ def analys_plot(price: list, volume: list, dates: list = None, items = None) -> 
     # fig = make_subplots(rows = 2, cols = 1, specs=[[{}], [{}]],
     #                     shared_yaxes=True, shared_xaxes=False,
     #                     vertical_spacing=0.01)
-    fig_price = go.Figure().set_subplots(2, 1, vertical_spacing = 0.1,
+    fig_price = go.Figure().set_subplots(2, 1,
         row_heights= [0.7, 0.3],
-        #specs = [[{"colspan": 1}], [None]]
+        shared_yaxes = False,
+        shared_xaxes = True,
+        vertical_spacing = 0.001,
         )
     
     fig_price.add_trace(go.Scatter(x = dates,y = price, mode = 'lines', name='price', showlegend=False))
