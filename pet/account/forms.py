@@ -1,15 +1,12 @@
 from typing import Any
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django import forms
+from django.contrib.auth.models import User
 
 class MyUserCreationForm(UserCreationForm):
     email = forms.EmailField()
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        return email
-    
-    def clean(self) -> dict[str, Any]:
-        return super().clean()
-
-    
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'email']
+        #field_classes = {"username": UsernameField}
