@@ -9,4 +9,4 @@ class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'email']
-        #field_classes = {"username": UsernameField}
+        field_classes = {"username": UsernameField}
