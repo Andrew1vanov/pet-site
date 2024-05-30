@@ -53,6 +53,7 @@ a.logo {
 #header {
     background-color: #12001F;
     overflow: auto;
+    height: 80px;
     padding-left: 30px;
 }
 
@@ -63,6 +64,8 @@ a.logo {
     padding-left: 30px;
     font-size: 20px;
     margin: 0%;
+    height: 40px;
+    text-align: center;
     }
 
 #subheader a {
@@ -94,6 +97,22 @@ a.logo {
 }
 
 
+.buttons {
+    background-color: #7D4F9E;
+    border: 1px ridge #C1C986;
+}
+
+button.profile {
+    position: absolute;
+    right: 0px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    border-style: solid;
+}
+
+
 caption {
     font-size: 20px;
     border-bottom: 2px ridge #7D4F9E;
@@ -114,10 +133,6 @@ caption {
     margin: 2%;
 }
 
-.buttons {
-    background-color: #7D4F9E;
-    border: 1px ridge #C1C986;
-}
 
 .profile a {
     text-decoration: none;
@@ -128,3 +143,28 @@ caption {
     background-color: red;
     border-radius: 10px;
 }
+
+.menu-list {
+    background-color: #7D4F9E;
+    color: #C1C986;
+    margin: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    top: 120px;
+    list-style: none;
+    text-align: center;
+    
+}
+
+#menu .menu-list {
+    display: none;
+    
+}
+
+#menu.show .menu-list {
+    display: block;
+}
+

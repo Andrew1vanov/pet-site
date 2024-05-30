@@ -6,7 +6,6 @@
         <meta charset="utf-8" />
         <title>{% block title %}Shares{% endblock %}</title>
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <!-- <script>alert('hello')</script> -->
         <link href="{% static "css/base.css" %}" rel="stylesheet">
     </head>
     <div id="header">
@@ -17,14 +16,48 @@
             <tr>
                 <td><a href="{% url "shares:title_page" %}">Главная</a></td>                
                 <td><a href="{% url "shares:all_security_list" %}" title="Список всех компаний торгующихся на MOEX">Список компаний</a></td>
-                <td><a href="{% url "account_view" %}">Профиль</a></td>
                 <td><a href="#">Теханализ</a></td>
-                <td><button class="user-btn"><img src=""></button></td>
+                <div id="menu">
+                    <button class="profile" onclick=""><img src=""></button>
+                    <ul class="menu-list">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url "account_view" %}">Профиль</a></li>
+                        <li><a href="{% url "logout" %}">Выйти</a></li>
+                    {% else %}
+                        <li><a href="{% url "login" %}">Войти</a></li>
+                        <li><a href="{% url "investor_registration" %}">Регистрация</a></li>
+                    {% endif %}
+                    </ul>
+                </div>
+                
             </tr>
         </table>
     </div>
+    
     <div id="content">
         {% block content %}
         {% endblock %}
     </div>
+    
+    <script>
+        const menu = document.getElementById('menu');
+
+        menu.addEventListener(
+            'mouseenter', function (e) {
+                console.log('hover')
+                menu.classList.toggle('show')
+            }
+        );
+        
+        menu.addEventListener(
+            'mouseleave', function (e) {
+                menu.classList.toggle('show')
+            }
+        );
+        menu.addEventListener(
+            'click', function () {
+                console.log('press')
+            }
+        );
+    </script>
 </html>
