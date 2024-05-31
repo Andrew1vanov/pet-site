@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-31 20:38+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\shares\templates\shares\base.html:18
+msgid "Home"
+msgstr ""
+
+#: .\shares\templates\shares\base.html:20
+msgid "technical analysis"
+msgstr ""
+
+#: .\shares\templates\shares\base.html:26
+msgid "Language"
+msgstr ""
+
+#: .\shares\templates\shares\base.html:41
+msgid "Profile"
+msgstr ""
+
+#: .\shares\templates\shares\base.html:42
+msgid "Logout"
+msgstr ""
+
+#: .\shares\templates\shares\base.html:44
+msgid "Log In"
+msgstr ""
+
+#: .\shares\templates\shares\base.html:46
+msgid "Registration"
+msgstr ""

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -14,22 +15,43 @@
     <div id="subheader">
         <table>
             <tr>
-                <td><a href="{% url "shares:title_page" %}">Главная</a></td>                
-                <td><a href="{% url "shares:all_security_list" %}" title="Список всех компаний торгующихся на MOEX">Список компаний</a></td>
-                <td><a href="#">Теханализ</a></td>
-                <div id="menu">
+                <td><a href="{% url "shares:title_page" %}">{% trans "Home" %}</a></td>                
+                <td><a href="{% url "shares:all_security_list" %}" title="Список всех компаний торгующихся на MOEX">
+                    {% trans "MoexList" %}</a></td>
+                <td><a href="#">{% trans "Techanalysis" %}</a></td>
+                
+
+                <div id="menu">                    
                     <button class="profile" onclick=""><img src=""></button>
                     <ul class="menu-list">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url "account_view" %}">Профиль</a></li>
-                        <li><a href="{% url "logout" %}">Выйти</a></li>
+                        <li><a href="{% url "account_view" %}">{% trans "Profile" %}</a></li>
+                        <li><a href="{% url "logout" %}">{% trans "Logout" %}</a></li>
                     {% else %}
-                        <li><a href="{% url "login" %}">Войти</a></li>
-                        <li><a href="{% url "investor_registration" %}">Регистрация</a></li>
+                        <li><a href="{% url "login" %}">{% trans "Log In" %}</a></li>
+                        <li><a href="{% url "investor_registration" %}">
+                            {% trans "Registration" %}
+                        </a></li>
                     {% endif %}
+                    </ul>                    
+                </div>
+
+                <div id="language-menu">
+                    <button class="language">{{ language.name_local }}</button>
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    <ul class="languages-list">
+                        {% for language in languages %}
+                        <li>
+                            <a href="/{{ language.code }}/"
+                            {% if language.code == LANGUAGE_CODE %} class="selected"{% endif %}>
+                                {{ language.name_local }}
+                            </a>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
-                
             </tr>
         </table>
     </div>
@@ -44,7 +66,6 @@
 
         menu.addEventListener(
             'mouseenter', function (e) {
-                console.log('hover')
                 menu.classList.toggle('show')
             }
         );
@@ -54,10 +75,19 @@
                 menu.classList.toggle('show')
             }
         );
-        menu.addEventListener(
+        // menu.addEventListener(
+        //     'click', function () {
+        //         console.log('press')
+        //     }
+        // );
+
+        const languageMenu = document.getElementById('language-menu');
+        
+        languageMenu.addEventListener(
             'click', function () {
-                console.log('press')
+               languageMenu.classList.toggle('show')
             }
         );
+
     </script>
 </html>
